@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title of Your Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+    
+    <style>
+      * {
+        color: orange;
+      }
+
+      button {
+        border: 0;
+        background: orange;
+        font-size: 18px;
+        margin: 8px;
+        color: red;
+        cursor: pointer;
+      }
+
+      .question {
+        font-size: 64px;
+        font-family: 'Gruppo', cursive;
+      }
+
+      .question a {
+          margin: 0 16px;
+          display: inline-block;
+          text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const useState = React.useState
+      const useEffect = React.useEffect
+
+      function rand(min=0, max=20) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function mixItUp(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [array[i], array[j]] = [array[j], array[i]];
+          }
+      }
+
+      function TypeSelect({onSetType}) {
+          return <div>
+            <button onClick={()=>onSetType('plus')}>+</button><br/>
+            <button onClick={()=>onSetType('minus')}>-</button><br/>
+            <button onClick={()=>onSetType('both')}>+ and -</button>
+          </div>
+      }
+
+      function getQuestion(mode) {
+        let firstNumber = 100
+        let secondNumber = 100
+        let type = (mode === 'both') ? (rand(0,1) === 0 ? 'minus' : 'plus') : mode
+        while(firstNumber + secondNumber > 20) {
+          firstNumber = rand()
+          secondNumber = rand()
+        }
+        const choices = getChoices(type, firstNumber, secondNumber)
+
+        return {firstNumber, type, secondNumber, choices}
+      }
+
+      function getChoices(type, firstNumber, secondNumber) {
+        const answer = type === 'minus' ? firstNumber - secondNumber : firstNumber + secondNumber
+        let wrong1 = answer
+        let wrong2 = answer
+        while (wrong1 === answer) wrong1 = rand()
+        while (wrong2 === answer || wrong1 === wrong2) wrong2 = rand()
+        const choices = [answer, wrong1, wrong2]
+        mixItUp(choices)
+        return choices
+      }
+
+      function Game() {
+        const [mode, setMode] = useState()
+        useEffect(()=>{
+          setSt(getQuestion(mode))
+        },[mode])
+
+        const [st, setSt] = useState(getQuestion(mode))
+        const next = ()=>setSt(getQuestion(mode))
+
+        const moreChoices = ()=>{
+          setSt({...st, choices: getChoices(st.type, st.firstNumber, st.secondNumber)})
+        }
+
+        if(!mode) return <TypeSelect onSetType={setMode}/>
+        else return <Question next={next} onBack={()=>setMode(null)} n1={st.firstNumber} n2={st.secondNumber} choices={st.choices} moreChoices={moreChoices} type={st.type}/>
+      }
+
+      function Question({type, n1, n2, choices, next, onBack, moreChoices}) {
+        let firstNumber = n1
+        let secondNumber = n2
+        const answer = type === 'minus' ? firstNumber - secondNumber : firstNumber + secondNumber
+        const sign = type === 'minus' ? '-' : '+'
+
+        function handleClick(c) {
+          if(c === answer) {
+            next()
+          } else {
+            moreChoices()
+          }
+        }
+
+      return <div className='question'>
+        <span>{firstNumber}</span> <span>{sign}</span> <span>{secondNumber}</span> = 
+        {choices.map(c=>
+          <a href="#" key={c} onClick={()=>handleClick(c)}>{c}</a>
+        )}
+        <br/>
+        <a href="#" onClick={()=>onBack()}>Back</a>
+        </div>
+      }
+
+      ReactDOM.render(
+          <Game name='World'/>,
+          document.getElementById('root'),
+      );
+
+    </script>
+
+</body> 
+</html>

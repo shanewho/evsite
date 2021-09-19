@@ -1,0 +1,100 @@
+<html>
+  <body>
+    <style>
+      body {
+        font-size: 50px;
+        font-family: sans-serif;
+        color: orange;
+      }
+
+      .line {
+        text-decoration: underline;
+      }
+
+      button {
+        color: white;
+        background: red;
+        font-size: 40px;
+        border: 0;
+        padding: 16px;
+        border-radius: 800px;
+        line-height: 2.5em;
+          display: inline-block;
+            width: 132px;
+            height: 132px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #FF5555;
+      }
+
+      button:focus {
+        outline: none;
+      }
+
+      .light {
+        font-size: 200px;
+        opacity: .2;
+        margin-top: 24px;
+        display:inline-block;
+        width: 175px;
+      }
+
+      .heart {
+        font-size: 200px;
+        margin-top: 24px;
+        display: none;
+        color: #fc9595;
+      }
+
+      .light.on {
+        opacity: 1;
+      }
+
+      .heart.on {
+        display: inline-block;
+      }
+    </style>
+
+    <section>
+      <p>
+        Hi, Evan. I &#10084; 
+        <span class="line">love</span> you! Dad
+      </p>
+      <button id='light'>Light</button>
+      <button id='heart'>Heart</button>
+
+      <p>
+        <span class="light">
+          &#128161;
+        </span>
+        <span class="heart">
+          &#10084;
+        </span>
+      </p>
+
+      <p>
+        i like daddy
+      </p>
+    </section>
+
+      <script>
+        const lightButton = document.body.querySelector('#light')
+        const light = document.body.querySelector('.light')
+
+        const heartButton = document.body.querySelector('#heart')
+        const heart = document.body.querySelector('.heart')
+
+        lightButton.addEventListener('click', function() {
+          light.classList.toggle('on');
+        })
+
+        heartButton.addEventListener('click', function() {
+          heart.classList.toggle('on');
+        })
+        
+      </script>
+
+  </body>
+</html>
