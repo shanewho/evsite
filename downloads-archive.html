@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <title>Evan-Blazek.com</title>
+  </head>
+  <body>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        font-size: 50px;
+        font-family: sans-serif;
+        color: orange;
+        height: 100%;
+      }
+
+      .line {
+        text-decoration: underline;
+      }
+
+      button {
+        color: white;
+        background: red;
+        font-size: 40px;
+        border: 0;
+        padding: 16px;
+        border-radius: 800px;
+        line-height: 2.5em;
+          display: inline-block;
+            width: 132px;
+            height: 132px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #FF5555;
+      }
+
+      button:focus {
+        outline: none;
+      }
+
+      .light {
+        font-size: 200px;
+        opacity: .2;
+        margin-top: 24px;
+        display:inline-block;
+        width: 175px;
+      }
+
+      .heart {
+        font-size: 200px;
+        margin-top: 24px;
+        display: none;
+        color: #fc9595;
+      }
+
+      .light.on {
+        opacity: 1;
+      }
+
+      .heart.on {
+        display: inline-block;
+      }
+
+      .button {
+        text-decoration: none;
+        background: orange;
+        padding: 24px;
+        color: white;
+      }
+
+      a {
+        color: orange;
+        text-decoration: orange;
+      }
+      a:visited {
+        color: orange;
+        text-decoration: orange;
+      }
+    </style>
+
+    <h1>Archive</h1>
+
+    <section style="float:left">
+
+      <div style="margin-bottom: 64px;">
+        <a class="button" href="/files/archive/archive-windows.zip">Windows</a>
+      </div>
+      <div style="margin-bottom: 64px;">
+        <a class="button" href="/files/archive/archive-mac.zip">Mac</a>
+      </div>
+      <div style="margin-bottom: 64px;">
+        <a class="button" href="/files/archive/archive-linux.zip">Linux</a>
+      </div>
+
+    </section>
+    <img style="float:left; margin-left: 64px; max-width:800px" src="/files/screenshot.png">
+
+    <div style="position: absolute; bottom: 0px">
+      <a href="http://www.archive.org/" target="archive">go to archive</a>
+    </div>
+
+  </body>
+</html>

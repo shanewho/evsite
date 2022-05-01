@@ -58,6 +58,13 @@
       .heart.on {
         display: inline-block;
       }
+
+      .downloadButton {
+        text-decoration: none;
+        background: orange;
+          padding: 24px;
+            color: white;
+      }
     </style>
 
     <section>
@@ -80,14 +87,16 @@
       <p>
         i like daddy
       </p>
+
+      <a href="/downloads.html" class="downloadButton">Downloads</a>
     </section>
 
       <script>
-        const lightButton = document.body.querySelector('#light')
-        const light = document.body.querySelector('.light')
+        var lightButton = document.body.querySelector('#light')
+        var light = document.body.querySelector('.light')
 
-        const heartButton = document.body.querySelector('#heart')
-        const heart = document.body.querySelector('.heart')
+        var heartButton = document.body.querySelector('#heart')
+        var heart = document.body.querySelector('.heart')
 
         lightButton.addEventListener('click', function() {
           light.classList.toggle('on');

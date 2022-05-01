@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <title>Evan-Blazek.com</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-size: 50px;
+        font-family: sans-serif;
+        color: orange;
+      }
+
+      .line {
+        text-decoration: underline;
+      }
+
+      button {
+        color: white;
+        background: red;
+        font-size: 40px;
+        border: 0;
+        padding: 16px;
+        border-radius: 800px;
+        line-height: 2.5em;
+          display: inline-block;
+            width: 132px;
+            height: 132px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #FF5555;
+      }
+
+      button:focus {
+        outline: none;
+      }
+
+      .light {
+        font-size: 200px;
+        opacity: .2;
+        margin-top: 24px;
+        display:inline-block;
+        width: 175px;
+      }
+
+      .heart {
+        font-size: 200px;
+        margin-top: 24px;
+        display: none;
+        color: #fc9595;
+      }
+
+      .light.on {
+        opacity: 1;
+      }
+
+      .heart.on {
+        display: inline-block;
+      }
+
+      .button {
+        text-decoration: none;
+        background: orange;
+          padding: 24px;
+            color: white;
+      }
+    </style>
+
+    <section>
+      <h1>Downloads</h1>
+      <a class="button" href="/downloads-archive.html">Archive</a>
+    </section>
+
+      <script>
+        var lightButton = document.body.querySelector('#light')
+        var light = document.body.querySelector('.light')
+
+        var heartButton = document.body.querySelector('#heart')
+        var heart = document.body.querySelector('.heart')
+
+        lightButton.addEventListener('click', function() {
+          light.classList.toggle('on');
+        })
+
+        heartButton.addEventListener('click', function() {
+          heart.classList.toggle('on');
+        })
+        
+      </script>
+
+  </body>
+</html>
